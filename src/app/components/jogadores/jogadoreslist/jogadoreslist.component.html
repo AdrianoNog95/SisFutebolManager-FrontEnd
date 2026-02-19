@@ -1,1 +1,93 @@
-<p>jogadoreslist works!</p>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card"><!--Este card que está fornecendo essa tela cinza no fundo-->
+                <div class="card-body">
+                    <h3>Listagem de jogadores</h3>
+                    
+                    <div class="direita">
+                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="abrirNovo()">
+                       Novo
+                    </button>                      
+                    </div>
+                    
+                    <br>
+                    <table border="2" class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome do jogador</th>
+                                <th>Data de nascimento</th>
+                                <th>País</th>
+                                <th>Posição</th>
+                                <th>Número do uniforme</th>
+                                <th>Overall</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (jogador of lista; track $index){
+                            <tr>
+                                <td>{{jogador.idJogador1}}</td>
+                                <td>{{jogador.nome}}</td>
+                                <td>{{jogador.dataNascimento}}</td>
+                                <td>{{jogador.pais}}</td>
+                                <td>{{jogador.posicao}}</td>
+                                <td>{{jogador.numeroUniforme}}</td>
+                                <td>{{jogador.overall}}</td>
+                                
+                                    
+                            
+                            
+                                <td class="direita">
+                                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(jogador)">
+                                        Editar
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-rounded" mdbRipple (click)="deleteById(jogador)">
+                                        Deletar
+                                    </button>        
+                                </td>
+                            </tr>
+                        } 
+                        </tbody>
+                    </table>
+                
+                </div>
+            </div>        
+
+        </div>
+    </div> 
+</div>  
+
+
+
+
+<ng-template #modalCarroDetalhe>
+<!--Essa tag está isolando a div abaixo, 
+    ou seja, evita que seja rederizado na tela enquanto
+    não houver chamada do usuário-->
+
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+
+    <app-jogadoresdetails [jogador]="jogadorEdit" (retorno)="retornoDetalhe($event)"></app-jogadoresdetails>
+    
+    
+    
+    
+</div>
+</ng-template>
+
+
+
+
+

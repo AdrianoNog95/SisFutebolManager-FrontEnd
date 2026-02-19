@@ -1,1 +1,29 @@
-<p>jogadoresdetails works!</p>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 centralizar topo">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Cadastro de jogador:</h3>
+                    <br>
+                    <mdb-form-control>
+                        <!--<input mdbInput type="text" class="form-control" [(ngModel)]="jogador.nome"/>-->
+                        <label mdbLabel class="form-label" for="nome">Nome do jogador:</label>
+                    </mdb-form-control>
+                    <br/>
+
+                    <mdb-form-control>
+                        <!--<input mdbInput type="text" class="form-control" [(ngModel)]="jogador.nome"/>-->
+                        <label mdbLabel class="form-label" for="dataNascimento">Data de nascimento:</label>
+                    </mdb-form-control>
+                    <br/>
+
+
+                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">
+                        Salvar
+                    </button> 
+                </div>
+            </div>                                      
+        </div>
+    </div>    
+</div>        
