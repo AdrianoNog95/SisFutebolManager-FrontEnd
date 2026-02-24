@@ -4,6 +4,7 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Jogador } from '../../../models/jogador';
 import Swal from 'sweetalert2';
+import { JogadorService } from '../../../services/jogador.service';
 
 @Component({
   selector: 'app-jogadoresdetails',
@@ -16,8 +17,9 @@ export class JogadoresdetailsComponent {
   @Output("retorno") retorno = new EventEmitter<any>();
   router = inject(ActivatedRoute);
   router2 = inject(Router);
-  
 
+  jogadorService = inject(JogadorService);
+  
   constructor(){
     let idJogador1 = this.router.snapshot.params['idJogador1'];
     if(idJogador1 > 0){
@@ -25,24 +27,36 @@ export class JogadoresdetailsComponent {
     }
   }  
   
-  findById(idJogador1: number) {
-    //busca no back-end
 
+  //PROCURAR POR ID
+  findById(idJogador1: number) {
+    this.jogadorService.findById(idJogador1).subscribe({
+        next: retorno => {
+          this.jogador = retorno;
+        },
+        error: erro => {
+          Swal.fire({
+          title: 'Ocorreu um erro',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
+     }
+    });
   }
 
   //SALVAR
   save() {
-    if (typeof this.carro.id === 'number' && this.carro.id > 0) {
+    if (typeof this.jogador.idJogador1 === 'number' && this.jogador.idJogador1 > 0) {
       
-      this.carroService.update(this.carro, this.carro.id!).subscribe({
+      this.jogadorService.update(this.jogador, this.jogador.idJogador1!).subscribe({
         next: mensagem => {
           Swal.fire({
             title: mensagem,
             icon: 'success',
             confirmButtonText: 'Ok',
           });
-          this.router2.navigate(['admin/carros'], {state: {carroEditado: this.carro}});
-          this.retorno.emit(this.carro);
+          this.router2.navigate(['/jogadores'], {state: {jogadorEditado: this.jogador}});
+          this.retorno.emit(this.jogador);
         },
         error: erro => {
           Swal.fire({
@@ -55,15 +69,15 @@ export class JogadoresdetailsComponent {
              
     }else{
       
-      this.carroService.save(this.carro).subscribe({
+      this.jogadorService.save(this.jogador).subscribe({
         next: mensagem => {
           Swal.fire({
             title: mensagem,
             icon: 'success',
             confirmButtonText: 'Ok',
           });
-          this.router2.navigate(['admin/carros'], {state: {carroNovo: this.carro}});
-          this.retorno.emit(this.carro);
+          this.router2.navigate(['/jogadores'], {state: {jogadorNovo: this.jogador}});
+          this.retorno.emit(this.jogador);
         },
         error: erro => {
            Swal.fire({
@@ -76,8 +90,18 @@ export class JogadoresdetailsComponent {
        
     }
 
-    
-
   }
+
+
+  onImagemSelecionada(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.jogador.fotoJogador1 = e.target.result; // Base64 direto no modelo
+    };
+    reader.readAsDataURL(file);
+  }
+}
 
 }

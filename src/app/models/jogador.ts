@@ -9,16 +9,16 @@ export class Jogador {
   public fotoJogador1?: string;
 
   constructor(
-    idJogador1?: number,
     nome?: string,
     dataNascimento?: Date,
     pais?: string,
     posicao?: string,
     numeroUniforme?: number,
     overall?: number,
-    fotoJogador1?: string
+    fotoJogador1?: string,
+    idJogador1?: number,
+
   ) {
-    if (idJogador1 !== undefined) this.idJogador1 = idJogador1;
     if (nome) this.nome = nome;
     if (dataNascimento) this.dataNascimento = dataNascimento;
     if (pais) this.pais = pais;
@@ -26,5 +26,6 @@ export class Jogador {
     if (numeroUniforme !== undefined) this.numeroUniforme = numeroUniforme;
     if (overall !== undefined) this.overall = overall;
     if (fotoJogador1) this.fotoJogador1 = fotoJogador1;
+    if (idJogador1 !== undefined) this.idJogador1 = idJogador1;
   }
 }

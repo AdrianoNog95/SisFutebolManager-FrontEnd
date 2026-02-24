@@ -1,7 +1,9 @@
 import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { Jogador } from '../../../models/jogador';
+import Swal from 'sweetalert2';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { JogadoresdetailsComponent } from '../jogadoresdetails/jogadoresdetails.component';
+import { JogadorService } from '../../../services/jogador.service';
 
 @Component({
   selector: 'app-jogadoreslist',
@@ -17,17 +19,17 @@ export class JogadoreslistComponent {
   modalService = inject(MdbModalService);
   @ViewChild("modalJogadorDetalhe") modalJogadorDetalhe!: TemplateRef<any>;
   modalRef!: MdbModalRef<any>;
+
+  jogadorService = inject(JogadorService);
   
   constructor(){
-    this.lista.push(new Jogador(1, 'Nesta'));
-    this.lista.push(new Jogador(2, 'Beckham'));
-    this.lista.push(new Jogador(3, 'Zambrotta'));
-  
+    this.listAll();
+    
     let jogadorNovo = history.state.jogadorNovo;
     let jogadorEditado = history.state.jogadorEditado;
   
     if(jogadorNovo != null){
-        jogadorNovo.id = 555;
+        jogadorNovo.idJogador1 = 555;
         this.lista.push(jogadorNovo);
     } 
     
@@ -37,8 +39,25 @@ export class JogadoreslistComponent {
     }
   }
   
-}
+
   
+  //LISTAR TUDO
+  listAll(){
+    this.jogadorService.listAll().subscribe({
+      next: lista => {
+        this.lista = lista;
+      },
+      error: erro => {
+        Swal.fire({
+          title: 'Ocorreu um erro',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
+      }
+    });
+  }  
+
+
   //DELETAR
   deleteById(jogador: Jogador){
     Swal.fire({
@@ -51,9 +70,9 @@ export class JogadoreslistComponent {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        if (!carro.id) return;
-        this.carroService.delete(carro.id).subscribe({
-          next: mensagem => {//quando o back retornar o que se espera
+        if (!jogador.idJogador1) return;
+        this.jogadorService.delete(jogador.idJogador1).subscribe({
+          next: mensagem => {
             Swal.fire({
               title: mensagem,
               icon: 'success',
@@ -71,16 +90,17 @@ export class JogadoreslistComponent {
 
        }
       });
-
-        
+      
       }
     });
   }
+
 
   //NOVO REGISTRO
   abrirNovo(){
     this.jogadorEdit = new Jogador("");
     this.modalRef = this.modalService.open(this.modalJogadorDetalhe);
+    this.fixAriaHidden();
   }
 
   //EDITAR REGISTRO
@@ -97,3 +117,26 @@ export class JogadoreslistComponent {
     this.listAll();      
     this.modalRef.close();
   } 
+
+
+
+  private fixAriaHidden(){
+  setTimeout(() => {
+    // Remove aria-hidden dos elementos problemáticos
+    const overlayContainer = document.querySelector('.cdk-overlay-container');
+    if (overlayContainer) {
+      overlayContainer.removeAttribute('aria-hidden');
+    }
+    
+    const appRoot = document.querySelector('app-root');
+    if (appRoot) {
+      appRoot.removeAttribute('aria-hidden');
+    }
+  }, 100);
+}
+
+
+
+
+}
+

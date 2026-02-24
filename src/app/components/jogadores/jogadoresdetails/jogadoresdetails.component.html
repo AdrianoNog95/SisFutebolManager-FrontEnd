@@ -7,15 +7,50 @@
                     <h3>Cadastro de jogador:</h3>
                     <br>
                     <mdb-form-control>
-                        <!--<input mdbInput type="text" class="form-control" [(ngModel)]="jogador.nome"/>-->
+                        <input mdbInput type="text" id="nome" class="form-control" [(ngModel)]="jogador.nome"/>
                         <label mdbLabel class="form-label" for="nome">Nome do jogador:</label>
                     </mdb-form-control>
                     <br/>
 
                     <mdb-form-control>
-                        <!--<input mdbInput type="text" class="form-control" [(ngModel)]="jogador.nome"/>-->
+                        <input mdbInput type="text" id="dataNascimento" class="form-control" [(ngModel)]="jogador.dataNascimento"/>
                         <label mdbLabel class="form-label" for="dataNascimento">Data de nascimento:</label>
                     </mdb-form-control>
+                    <br/>
+
+                    <mdb-form-control>
+                        <input mdbInput type="text" id="pais" class="form-control" [(ngModel)]="jogador.pais"/>
+                        <label mdbLabel class="form-label" for="pais">País:</label>
+                    </mdb-form-control>
+                    <br/>
+
+                    <mdb-form-control>
+                        <input mdbInput type="text" id="posicao" class="form-control" [(ngModel)]="jogador.posicao"/>
+                        <label mdbLabel class="form-label" for="posicao">Posição:</label>
+                    </mdb-form-control>
+                    <br/>
+
+                    <mdb-form-control>
+                        <input mdbInput type="text" id="overall" class="form-control" [(ngModel)]="jogador.overall"/>
+                        <label mdbLabel class="form-label" for="overall">Overall:</label>
+                    </mdb-form-control>
+                    <br/>
+
+
+                    <!-- Card da foto -->
+                    <div class="card" style="width: 250px;">
+                        <img [src]="jogador.fotoJogador1 || 'avatarPlaceHolder.png'" 
+                            class="card-img-top" 
+                            alt="Foto do jogador"
+                            style="width: 250px; height: 330px; object-fit: contain;"/>
+                        <div class="card-body">
+                            <p class="card-text">Selecione a foto do jogador:</p>
+                            <input type="file" 
+                                   class="form-control" 
+                                   accept="image/jpeg, image/jpg"
+                                   (change)="onImagemSelecionada($event)"/>
+                        </div>
+                    </div>
                     <br/>
 
 

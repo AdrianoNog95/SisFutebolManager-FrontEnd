@@ -16,12 +16,11 @@
                     <table border="2" class="table">
                         <thead class="table-dark">
                             <tr>
-                                <th>ID</th>
+                                <th>ID Jogador</th>
                                 <th>Nome do jogador</th>
                                 <th>Data de nascimento</th>
                                 <th>País</th>
                                 <th>Posição</th>
-                                <th>Número do uniforme</th>
                                 <th>Overall</th>
                                 <th>Ações</th>
                             </tr>
@@ -34,12 +33,8 @@
                                 <td>{{jogador.dataNascimento}}</td>
                                 <td>{{jogador.pais}}</td>
                                 <td>{{jogador.posicao}}</td>
-                                <td>{{jogador.numeroUniforme}}</td>
-                                <td>{{jogador.overall}}</td>
-                                
-                                    
-                            
-                            
+                                <td>{{jogador.overall}}</td>               
+                                                              
                                 <td class="direita">
                                     <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="edit(jogador)">
                                         Editar
@@ -63,7 +58,7 @@
 
 
 
-<ng-template #modalCarroDetalhe>
+<ng-template #modalJogadorDetalhe>
 <!--Essa tag está isolando a div abaixo, 
     ou seja, evita que seja rederizado na tela enquanto
     não houver chamada do usuário-->
