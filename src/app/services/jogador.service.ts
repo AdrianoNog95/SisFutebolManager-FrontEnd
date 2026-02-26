@@ -34,4 +34,8 @@ export class JogadorService {
         return this.http.get<Jogador>(this.API+"/findById/"+idJogador1);
     }
 
+    findByPosicao(posicao: string): Observable<Jogador[]> {
+        return this.http.get<Jogador[]>(this.API + "/findByPosicao/" + posicao);
+    }
+
 }    

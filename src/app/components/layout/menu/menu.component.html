@@ -29,8 +29,31 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/jogadores" style="cursor: pointer;">Jogadores</a>
         </li>
-      </ul>
-    </div>
-    
+
+        <!-- Navbar dropdown -->
+        <li class="nav-item dropdown" mdbDropdown>
+          <a
+            class="nav-link dropdown-toggle"
+            mdbDropdownToggle
+            role="button"
+            aria-expanded="false">
+            Formações
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu" mdbDropdownMenu aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/escalacao433">Escalação 4-4-3</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Another action</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </li>
+          </ul>
+        </li>
+    </ul>
   </div>
+</div>
+    
 </nav>
