@@ -14,7 +14,7 @@
 
                     <mdb-form-control>
                         <input mdbInput type="text" id="dataNascimento" class="form-control" [(ngModel)]="jogador.dataNascimento"/>
-                        <label mdbLabel class="form-label" for="dataNascimento">Data de nascimento:</label>
+                        <label mdbLabel class="form-label" for="dataNascimento">Data de nascimento</label>
                     </mdb-form-control>
                     <br/>
 
@@ -25,7 +25,22 @@
                     <br/>
 
                     <mdb-form-control>
-                        <input mdbInput type="text" id="posicao" class="form-control" [(ngModel)]="jogador.posicao"/>
+                        <select mdbInput id="posicao" class="form-control" [(ngModel)]="jogador.posicao">
+                            <option value=""></option>
+                            <option value="Goleiro">Goleiro</option>
+                            <option value="Lateral-direito">Lateral-direito</option>
+                            <option value="Lateral-esquerdo">Lateral-esquerdo</option>
+                            <option value="Zagueiro">Zagueiro</option>
+                            <option value="Volante">Volante</option>
+                            <option value="Meio-campo">Meio-campo</option>
+                            <option value="Meia-esquerda">Meia-esquerda</option>
+                            <option value="Meia-direita">Meia-direita</option>
+                            <option value="Meia-ofensivo">Meia-ofensivo</option>
+                            <option value="Ponta-esquerda">Ponta-esquerda</option>
+                            <option value="Ponta-direita">Ponta-direita</option>
+                            <option value="Segundo atacante">Segundo atacante</option>
+                            <option value="Centroavante">Centroavante</option>
+                        </select>
                         <label mdbLabel class="form-label" for="posicao">Posição:</label>
                     </mdb-form-control>
                     <br/>

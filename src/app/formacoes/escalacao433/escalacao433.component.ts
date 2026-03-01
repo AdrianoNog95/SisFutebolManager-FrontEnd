@@ -23,7 +23,7 @@ export class Escalacao433Component implements OnInit {
   }
 
   carregarGoleiros() {
-  this.jogadorService.findByPosicao('goleiro').subscribe({
+  this.jogadorService.findByPosicao('Goleiro').subscribe({
     next: jogadores => {
       this.goleiros = jogadores;
     },

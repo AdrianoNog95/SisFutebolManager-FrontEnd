@@ -5,10 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Jogador } from '../../../models/jogador';
 import Swal from 'sweetalert2';
 import { JogadorService } from '../../../services/jogador.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-jogadoresdetails',
-  imports: [MdbFormsModule, FormsModule],
+  imports: [MdbFormsModule, FormsModule, CommonModule],
   templateUrl: './jogadoresdetails.component.html',
   styleUrl: './jogadoresdetails.component.scss'
 })
@@ -103,5 +105,10 @@ export class JogadoresdetailsComponent {
     reader.readAsDataURL(file);
   }
 }
+
+
+
+
+
 
 }

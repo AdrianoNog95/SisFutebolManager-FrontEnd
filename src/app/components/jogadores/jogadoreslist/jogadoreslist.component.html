@@ -6,10 +6,45 @@
                 <div class="card-body">
                     <h3>Listagem de jogadores</h3>
                     
-                    <div class="direita">
-                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="abrirNovo()">
-                       Novo
-                    </button>                      
+                    <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                        <!-- Ordenar por -->
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-bold">Ordenar por:</span>
+                            <div mdbDropdown class="dropdown">
+                                <button
+                                mdbDropdownToggle
+                                type="button"
+                                class="btn btn-outline-secondary btn-sm dropdown-toggle">
+                                {{ textoOrdenacaoSelecionada }}
+                                </button>
+
+                                <ul mdbDropdownMenu class="dropdown-menu">
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('idJogador1|asc', 'ID Jogador → Menor para maior')">ID Jogador → Menor para maior</a></li>
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('idJogador1|desc', 'ID Jogador → Maior para menor')">ID Jogador → Maior para menor</a></li>
+
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('nome|asc', 'Nome → A-Z')">Nome → A-Z</a></li>
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('nome|desc', 'Nome → Z-A')">Nome → Z-A</a></li>
+
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('dataNascimento|asc', 'Data nascimento → mais antigo para mais novo')">Data nascimento → mais antigo para mais novo</a></li>
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('dataNascimento|desc', 'Data nascimento → mais novo para mais antigo')">Data nascimento → mais novo para mais antigo</a></li>
+                                    
+
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('pais|asc', 'País → A-Z')">País → A-Z</a></li>
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('pais|desc', 'País → Z-A')">País → Z-A</a></li>
+
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('posicao|asc', 'Posição → A-Z')">Posição → A-Z</a></li>
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('posicao|desc', 'Posição → Z-A')">Posição → Z-A</a></li>
+
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('overall|asc', 'Overall → Menor para maior')">Overall → Menor para maior</a></li>
+                                <li><a class="dropdown-item" (click)="selecionarOrdenacao('overall|desc', 'Overall → Maior para menor')">Overall → Maior para menor</a></li>
+                                </ul>
+                            </div>
+                        </div>                     
+                        <button type="button" 
+                                class="btn btn-primary btn-rounded" 
+                                mdbRipple 
+                                (click)="abrirNovo()">Novo
+                        </button>
                     </div>
                     
                     <br>
@@ -24,13 +59,22 @@
                                 <th>Overall</th>
                                 <th>Ações</th>
                             </tr>
+                            <tr>
+                                <th><input type="text" class="form-control form-control-sm" [(ngModel)]="filtro.idJogador1" placeholder="Filtrar..."/></th>
+                                <th><input type="text" class="form-control form-control-sm" [(ngModel)]="filtro.nome" placeholder="Filtrar..."/></th>
+                                <th><input type="text" class="form-control form-control-sm" [(ngModel)]="filtro.dataNascimento" placeholder="Filtrar..."/></th>
+                                <th><input type="text" class="form-control form-control-sm" [(ngModel)]="filtro.pais" placeholder="Filtrar..."/></th>
+                                <th><input type="text" class="form-control form-control-sm" [(ngModel)]="filtro.posicao" placeholder="Filtrar..."/></th>
+                                <th><input type="text" class="form-control form-control-sm" [(ngModel)]="filtro.overall" placeholder="Filtrar..."/></th>
+                                <th></th>
+                            </tr>
                         </thead>
                         <tbody>
-                            @for (jogador of lista; track $index){
+                            @for (jogador of listaFiltrada; track $index){
                             <tr>
                                 <td>{{jogador.idJogador1}}</td>
                                 <td>{{jogador.nome}}</td>
-                                <td>{{jogador.dataNascimento}}</td>
+                                <td>{{ jogador.dataNascimento | date:'dd/MM/yyyy' }}</td>
                                 <td>{{jogador.pais}}</td>
                                 <td>{{jogador.posicao}}</td>
                                 <td>{{jogador.overall}}</td>               
@@ -81,8 +125,3 @@
     
 </div>
 </ng-template>
-
-
-
-
-

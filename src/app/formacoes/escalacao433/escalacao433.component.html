@@ -89,9 +89,9 @@
           {{ goleiroSelecionado.nome || 'Selecionar' }}
         </button>
         <ul class="dropdown-menu" mdbDropdownMenu>
-          <li *ngFor="let goleiro of goleiros">
-            <a class="dropdown-item" (click)="selecionarGoleiro(goleiro)">
-              {{ goleiro.nome }}
+          <li *ngFor="let Goleiro of goleiros">
+            <a class="dropdown-item" (click)="selecionarGoleiro(Goleiro)">
+              {{ Goleiro.nome }}
             </a>
           </li>
         </ul>

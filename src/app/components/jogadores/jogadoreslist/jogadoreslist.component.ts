@@ -4,10 +4,14 @@ import Swal from 'sweetalert2';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { JogadoresdetailsComponent } from '../jogadoresdetails/jogadoresdetails.component';
 import { JogadorService } from '../../../services/jogador.service';
+import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-jogadoreslist',
-  imports: [MdbModalModule, JogadoresdetailsComponent],
+  imports: [MdbModalModule, JogadoresdetailsComponent, MdbDropdownModule, FormsModule, CommonModule],
   templateUrl: './jogadoreslist.component.html',
   styleUrl: './jogadoreslist.component.scss'
 })
@@ -136,7 +140,81 @@ export class JogadoreslistComponent {
 }
 
 
+ordenar(campo: string, direcao: 'asc' | 'desc') {
+
+  this.lista.sort((a: any, b: any) => {
+
+    let valorA = a[campo];
+    let valorB = b[campo];
+
+    // Trata null corretamente baseado na direção
+    if (valorA == null && valorB == null) return 0;
+    if (valorA == null) return direcao === 'asc' ? 1 : -1;
+    if (valorB == null) return direcao === 'asc' ? -1 : 1;
+
+    // Converte data ISO para número
+    if (campo === 'dataNascimento') {
+      valorA = new Date(valorA).getTime();
+      valorB = new Date(valorB).getTime();
+    }
+
+    // Se for string
+    if (typeof valorA === 'string') {
+      valorA = valorA.toLowerCase();
+      valorB = valorB.toLowerCase();
+    }
+
+    if (valorA > valorB) return direcao === 'asc' ? 1 : -1;
+    if (valorA < valorB) return direcao === 'asc' ? -1 : 1;
+
+    return 0;
+  });
+}
+
+
+filtro = {
+  idJogador1: '',
+  nome: '',
+  dataNascimento: '',
+  pais: '',
+  posicao: '',
+  overall: ''
+};
+
+
+get listaFiltrada(): Jogador[] {
+  return this.lista.filter(j => {
+    return (
+      (!this.filtro.idJogador1 || String(j.idJogador1).includes(this.filtro.idJogador1)) &&
+      (!this.filtro.nome || j.nome?.toLowerCase().includes(this.filtro.nome.toLowerCase())) &&
+      (!this.filtro.dataNascimento || String(j.dataNascimento).includes(this.filtro.dataNascimento)) &&
+      (!this.filtro.pais || j.pais?.toLowerCase().includes(this.filtro.pais.toLowerCase())) &&
+      (!this.filtro.posicao || j.posicao?.toLowerCase().includes(this.filtro.posicao.toLowerCase())) &&
+      (!this.filtro.overall || String(j.overall).includes(this.filtro.overall))
+    );
+  });
+}
+
+
+ordenacaoSelecionada: string = 'idJogador1|asc';
+textoOrdenacaoSelecionada: string = 'ID Jogador → Menor para maior';
+selecionarOrdenacao(valor: string, texto: string) {
+  this.ordenacaoSelecionada = valor;
+  this.textoOrdenacaoSelecionada = texto;
+  this.aplicarOrdenacao(valor);
+}
+
+aplicarOrdenacao(valor: string) {
+  const partes = valor.split('|');
+  const campo = partes[0];
+  const direcao = partes[1] as 'asc' | 'desc';
+
+  this.ordenar(campo, direcao);
+}
+
+
+
+
 
 
 }
-
