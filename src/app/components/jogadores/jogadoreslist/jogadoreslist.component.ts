@@ -103,8 +103,10 @@ export class JogadoreslistComponent {
   //NOVO REGISTRO
   abrirNovo(){
     this.jogadorEdit = new Jogador("");
-    this.modalRef = this.modalService.open(this.modalJogadorDetalhe);
-    this.fixAriaHidden();
+    this.modalRef = this.modalService.open(this.modalJogadorDetalhe, {
+      modalClass: 'modal-xl'
+    });
+      this.fixAriaHidden();
   }
 
   //EDITAR REGISTRO
@@ -113,8 +115,10 @@ export class JogadoreslistComponent {
     //Ou seja, impede que um texto numa grid seja alterado
     //se o usuário sair sem confirmar a edição. 
     this.jogadorEdit = Object.assign({}, jogador); 
-    this.modalRef = this.modalService.open(this.modalJogadorDetalhe);
-  }
+    this.modalRef = this.modalService.open(this.modalJogadorDetalhe, { 
+      modalClass: 'modal-xl'
+    });
+  }  
 
 
   retornoDetalhe(jogador: Jogador){

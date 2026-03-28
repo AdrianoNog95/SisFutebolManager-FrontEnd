@@ -46,56 +46,79 @@
   </div>
 
   <!-- Defensores -->
+  <!-- Defensor n°7 - Lateral-esquerdo --> 
   <div class="d-flex justify-content-center gap-3 mb-4">
     <div class="card" style="width: 150px;">
-      <div class="card-body">
-        <small class="text-muted">Defensor</small>
-        <p class="card-text">Jogador 7</p>
+      <img [src]="lateralEsquerdoSelecionado.fotoJogador1 || 'avatarPlaceHolder.png'" 
+          class="card-img-top" 
+          alt="Foto do lateral-esquerdo"
+          style="width: 150px; height: 200px; object-fit: contain;"/>
+      <div class="card-body p-1 text-center">
+        <small class="text-muted">Lateral-esquerdo</small>
+        <input type="hidden" [(ngModel)]="lateralEsquerdoSelecionado.overall"/>
+        <div class="dropdown mt-1" mdbDropdown>
+          <button class="btn btn-primary btn-sm dropdown-toggle w-100"
+                  type="button"
+                  mdbDropdownToggle>
+            {{ lateralEsquerdoSelecionado.nome || 'Selecionar' }}
+          </button>
+          <ul class="dropdown-menu" mdbDropdownMenu>
+            <li *ngFor="let lateralEsquerdo of defensores">
+              <a class="dropdown-item" (click)="selecionarLateralEsquerdo(lateralEsquerdo)">
+                {{ lateralEsquerdo.nome }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="card" style="width: 150px;">
-      <div class="card-body">
-        <small class="text-muted">Defensor</small>
-        <p class="card-text">Jogador 8</p>
-      </div>
-    </div>
-    <div class="card" style="width: 150px;">
-      <div class="card-body">
-        <small class="text-muted">Defensor</small>
-        <p class="card-text">Jogador 9</p>
-      </div>
-    </div>
-    <div class="card" style="width: 150px;">
-      <div class="card-body">
-        <small class="text-muted">Defensor</small>
-        <p class="card-text">Jogador 10</p>
-      </div>
-    </div>
-  </div>
 
-<!-- Goleiro -->
-<div class="d-flex justify-content-center mb-4">
-  <div class="card" style="width: 150px;">
-    <img [src]="goleiroSelecionado.fotoJogador1 || 'avatarPlaceHolder.png'" 
-         class="card-img-top" 
-         alt="Foto do goleiro"
-         style="width: 150px; height: 200px; object-fit: contain;"/>
-    <div class="card-body p-1 text-center">
-      <small class="text-muted">Goleiro</small>
-      <div class="dropdown mt-1" mdbDropdown>
-        <button class="btn btn-primary btn-sm dropdown-toggle w-100"
-                type="button"
-                mdbDropdownToggle>
-          {{ goleiroSelecionado.nome || 'Selecionar' }}
-        </button>
-        <ul class="dropdown-menu" mdbDropdownMenu>
-          <li *ngFor="let Goleiro of goleiros">
-            <a class="dropdown-item" (click)="selecionarGoleiro(Goleiro)">
-              {{ Goleiro.nome }}
-            </a>
-          </li>
-        </ul>
+    
+      <div class="card" style="width: 150px;">
+        <div class="card-body">
+          <small class="text-muted">Defensor</small>
+          <p class="card-text">Jogador 8</p>
+        </div>
+      </div>
+      <div class="card" style="width: 150px;">
+        <div class="card-body">
+          <small class="text-muted">Defensor</small>
+          <p class="card-text">Jogador 9</p>
+        </div>
+      </div>
+      <div class="card" style="width: 150px;">
+        <div class="card-body">
+          <small class="text-muted">Defensor</small>
+          <p class="card-text">Jogador 10</p>
+        </div>
       </div>
     </div>
-  </div>
+
+  <!-- Goleiro -->
+  <div class="d-flex justify-content-center mb-4">
+    <div class="card" style="width: 150px;">
+      <img [src]="goleiroSelecionado.fotoJogador1 || 'avatarPlaceHolder.png'" 
+          class="card-img-top" 
+          alt="Foto do goleiro"
+          style="width: 150px; height: 200px; object-fit: contain;"/>
+      <div class="card-body p-1 text-center">
+        <small class="text-muted">Goleiro</small>
+        <input type="hidden" [(ngModel)]="goleiroSelecionado.overall"/>
+        <div class="dropdown mt-1" mdbDropdown>
+          <button class="btn btn-primary btn-sm dropdown-toggle w-100"
+                  type="button"
+                  mdbDropdownToggle>
+            {{ goleiroSelecionado.nome || 'Selecionar' }}
+          </button>
+          <ul class="dropdown-menu" mdbDropdownMenu>
+            <li *ngFor="let Goleiro of goleiros">
+              <a class="dropdown-item" (click)="selecionarGoleiro(Goleiro)">
+                {{ Goleiro.nome }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>

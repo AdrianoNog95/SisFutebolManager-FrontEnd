@@ -4,76 +4,84 @@
         <div class="col-lg-12 centralizar topo">
             <div class="card">
                 <div class="card-body">
+                    <div class="card-body">
                     <h3>Cadastro de jogador:</h3>
                     <br>
-                    <mdb-form-control>
-                        <input mdbInput type="text" id="nome" class="form-control" [(ngModel)]="jogador.nome"/>
-                        <label mdbLabel class="form-label" for="nome">Nome do jogador:</label>
-                    </mdb-form-control>
-                    <br/>
+                    <div class="row">
 
-                    <mdb-form-control>
-                        <input mdbInput type="text" id="dataNascimento" class="form-control" [(ngModel)]="jogador.dataNascimento"/>
-                        <label mdbLabel class="form-label" for="dataNascimento">Data de nascimento</label>
-                    </mdb-form-control>
-                    <br/>
-
-                    <mdb-form-control>
-                        <input mdbInput type="text" id="pais" class="form-control" [(ngModel)]="jogador.pais"/>
-                        <label mdbLabel class="form-label" for="pais">País:</label>
-                    </mdb-form-control>
-                    <br/>
-
-                    <mdb-form-control>
-                        <select mdbInput id="posicao" class="form-control" [(ngModel)]="jogador.posicao">
-                            <option value=""></option>
-                            <option value="Goleiro">Goleiro</option>
-                            <option value="Lateral-direito">Lateral-direito</option>
-                            <option value="Lateral-esquerdo">Lateral-esquerdo</option>
-                            <option value="Zagueiro">Zagueiro</option>
-                            <option value="Volante">Volante</option>
-                            <option value="Meio-campo">Meio-campo</option>
-                            <option value="Meia-esquerda">Meia-esquerda</option>
-                            <option value="Meia-direita">Meia-direita</option>
-                            <option value="Meia-ofensivo">Meia-ofensivo</option>
-                            <option value="Ponta-esquerda">Ponta-esquerda</option>
-                            <option value="Ponta-direita">Ponta-direita</option>
-                            <option value="Segundo atacante">Segundo atacante</option>
-                            <option value="Centroavante">Centroavante</option>
-                        </select>
-                        <label mdbLabel class="form-label" for="posicao">Posição:</label>
-                    </mdb-form-control>
-                    <br/>
-
-                    <mdb-form-control>
-                        <input mdbInput type="text" id="overall" class="form-control" [(ngModel)]="jogador.overall"/>
-                        <label mdbLabel class="form-label" for="overall">Overall:</label>
-                    </mdb-form-control>
-                    <br/>
-
-
-                    <!-- Card da foto -->
-                    <div class="card" style="width: 250px;">
-                        <img [src]="jogador.fotoJogador1 || 'avatarPlaceHolder.png'" 
-                            class="card-img-top" 
-                            alt="Foto do jogador"
-                            style="width: 250px; height: 330px; object-fit: contain;"/>
-                        <div class="card-body">
-                            <p class="card-text">Selecione a foto do jogador:</p>
-                            <input type="file" 
-                                   class="form-control" 
-                                   accept="image/jpeg, image/jpg"
-                                   (change)="onImagemSelecionada($event)"/>
+                        <!-- COLUNA ESQUERDA - FOTO -->
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img [src]="jogador.fotoJogador1 || 'avatarPlaceHolder.png'" 
+                                    class="card-img-top" 
+                                    alt="Foto do jogador"
+                                    style="height: 250px; object-fit: contain;"/>
+                                <div class="card-body p-4">
+                                    <p class="card-text mb-1">Foto:</p>
+                                    <input type="file" 
+                                        class="form-control" 
+                                        accept="image/jpeg, image/jpg"
+                                        (change)="onImagemSelecionada($event)"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <br/>
+
+                       
+                        <div class="col-lg-8">
+                            <mdb-form-control>
+                                <input mdbInput type="text" id="nome" class="form-control" [(ngModel)]="jogador.nome"/>
+                                <label mdbLabel class="form-label" for="nome">Nome do jogador:</label>
+                            </mdb-form-control>
+                            <br/>
+
+                            <mdb-form-control>
+                                <input mdbInput type="text" id="dataNascimento" class="form-control" [(ngModel)]="jogador.dataNascimento"/>
+                                <label mdbLabel class="form-label" for="dataNascimento">Data de nascimento</label>
+                            </mdb-form-control>
+                            <br/>
+
+                            <mdb-form-control>
+                                <input mdbInput type="text" id="pais" class="form-control" [(ngModel)]="jogador.pais"/>
+                                <label mdbLabel class="form-label" for="pais">País:</label>
+                            </mdb-form-control>
+                            <br/>
+
+                            <mdb-form-control>
+                                <select mdbInput id="posicao" class="form-control" [(ngModel)]="jogador.posicao">
+                                    <option value=""></option>
+                                    <option value="Goleiro">Goleiro</option>
+                                    <option value="Lateral-direito">Lateral-direito</option>
+                                    <option value="Lateral-esquerdo">Lateral-esquerdo</option>
+                                    <option value="Zagueiro">Zagueiro</option>
+                                    <option value="Volante">Volante</option>
+                                    <option value="Meio-campo">Meio-campo</option>
+                                    <option value="Meia-esquerda">Meia-esquerda</option>
+                                    <option value="Meia-direita">Meia-direita</option>
+                                    <option value="Meia-ofensivo">Meia-ofensivo</option>
+                                    <option value="Ponta-esquerda">Ponta-esquerda</option>
+                                    <option value="Ponta-direita">Ponta-direita</option>
+                                    <option value="Segundo atacante">Segundo atacante</option>
+                                    <option value="Centroavante">Centroavante</option>
+                                </select>
+                                <label mdbLabel class="form-label" for="posicao">Posição - Clique no dropdown list:</label>
+                            </mdb-form-control>
+                            <br/>
+
+                            <mdb-form-control>
+                                <input mdbInput type="text" id="overall" class="form-control" [(ngModel)]="jogador.overall"/>
+                                <label mdbLabel class="form-label" for="overall">Overall:</label>
+                            </mdb-form-control>
+                            <br/>
+                            </div>
+                        </div>
+                        <br>
+
+                        <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">
+                                Salvar
+                        </button>
+</div>
 
 
-                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple (click)="save()">
-                        Salvar
-                    </button> 
-                </div>
-            </div>                                      
-        </div>
-    </div>    
-</div>        
+
+
+  
