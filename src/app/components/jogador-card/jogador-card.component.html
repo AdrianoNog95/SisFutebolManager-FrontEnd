@@ -1,0 +1,49 @@
+<div class="card jogador-card">
+
+  <img
+    [src]="jogador.fotoJogador1 || 'avatarPlaceHolder.png'"
+    class="card-img-top"
+    [alt]="'Foto do jogador da posição ' + posicao"
+  />
+
+  <div class="card-body p-1 text-center">
+
+    <small class="text-muted">
+      {{ posicao }}
+    </small>
+
+    <input
+      type="text"
+      class="form-control form-control-sm mt-1"
+      [(ngModel)]="jogador.overall"
+    />
+
+    <div class="dropdown mt-1" mdbDropdown>
+
+      <button
+        class="btn btn-primary btn-sm dropdown-toggle w-100"
+        type="button"
+        mdbDropdownToggle
+      >
+        {{ jogador.nome || 'Selecionar' }}
+      </button>
+
+      <ul class="dropdown-menu" mdbDropdownMenu>
+
+        <li *ngFor="let jogadorLista of jogadores">
+          <button
+            type="button"
+            class="dropdown-item"
+            (click)="selecionarJogador(jogadorLista)"
+          >
+            {{ jogadorLista.nome }}
+          </button>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

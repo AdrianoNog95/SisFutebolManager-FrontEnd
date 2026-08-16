@@ -1,0 +1,17 @@
+:host {
+  display: block; // corrige o gap
+}
+
+.jogador-card {
+  width: 150px; // volta pro fixo, sem clamp
+}
+
+.jogador-card img {
+  width: 150px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.jogador-card input {
+  text-align: center;
+}

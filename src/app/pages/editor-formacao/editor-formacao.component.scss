@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  margin: 50px;
+} 
+
+.campo-editor {
+  position: relative;
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  aspect-ratio: 2 / 3;
+  background-color: #2e7d32;
+  border: 2px solid white;
+  border-radius: 8px;
+}
+
+// A âncora centraliza estaticamente — nunca é tocada pelo CDK
+.card-anchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+// O elemento arrastável não tem transform próprio — só o CDK mexe nele
+.card-draggable {
+  position: relative;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.jogador-card {
+  width: 150px;
+}
+
+.jogador-card img {
+  width: 150px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.jogador-card input {
+  text-align: center;
+}
+
+

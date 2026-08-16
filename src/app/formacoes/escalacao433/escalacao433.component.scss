@@ -1,0 +1,25 @@
+:host {
+    display: block;
+    margin: 50px;
+}
+
+
+
+.campo {
+  position: relative;
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  aspect-ratio: 2 / 3;
+  background-color: #2e7d32;
+  border: 2px solid white;
+  border-radius: 8px;
+}
+
+
+.card-no-campo {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+

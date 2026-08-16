@@ -14,6 +14,10 @@ export const routes: Routes = [
         {path: "jogadores", component: JogadoreslistComponent}, 
         {path: "jogadores/new", component: JogadoresdetailsComponent},
         {path: "jogadores/edit/:id", component: JogadoresdetailsComponent},
-        {path: "escalacao433", component: Escalacao433Component}
+        {path: "escalacao433", component: Escalacao433Component},
+        {path: 'dev/editor-formacao',
+            loadComponent: () => import('./pages/editor-formacao/editor-formacao.component')
+                .then(m => m.EditorFormacaoComponent)
+        }
     ]}
 ];
